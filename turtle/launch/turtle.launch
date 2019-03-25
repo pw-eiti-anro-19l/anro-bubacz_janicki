@@ -1,0 +1,12 @@
+<launch>
+
+	<node name = "turtleone" pkg = "turtlesim" type = "turtlesim_node" />
+
+	<node name = "control" pkg = "turtle_task" type = "control.py" output="screen" />
+
+	<param name = "fwd" type = "string" value = "w" />
+	<param name = "bwd" type = "string" value = "s" />
+	<param name = "rht" type = "string" value = "d" />
+	<param name = "lft" type = "string" value = "a" />
+
+</launch>
