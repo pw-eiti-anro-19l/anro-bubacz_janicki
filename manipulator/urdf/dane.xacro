@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+
+<robot name="my_manipulator" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+	<xacro:include filename="$(find manipulator)/urdf/wzorzec.xacro" />
+
+	<my_link_box name="base_link" origin_rpy="0 0 0" origin_xyz="0 0 0" size="1 1 1" />
+
+	<joint name="base_link__link_01" type="revolute">
+		<axis xyz="0 0 1"/>
+			<limit effort = "1000.0" lower = "-3.14" upper = "3.14" velocity = "0.5"/>
+			<origin rpy = "0 0 0" xyz = "0 0 0.5"/>
+			<parent link = "base_link"/>
+			<child link = "link_01"/>
+	</joint>
+
+	<link name="link_01">
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0.15"/>
+				<geometry>
+					<cylinder radius="0.4" length="0.3"/>
+				</geometry>
+		</visual>
+	</link>
+
+	<joint name="link01__link_02" type="revolute">
+				<axis xyz="0 1 0"/>
+				<limit effort = "1000.0" lower = "-3.14" upper = "3.14" velocity = "0.5"/>
+				<origin rpy = "0 0 0" xyz = "0 0 0.3"/>
+				<parent link = "link_01"/>
+				<child link = "link_02"/>
+	</joint>
+
+	<link name="link_02">
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0.6"/>
+				<geometry>
+					<cylinder radius="0.15" length="1.2"/>
+				</geometry>
+		</visual>
+	</link>
+
+	<joint name="link02__link_03" type="revolute">
+			<axis xyz="0 1 0"/>
+				<limit effort = "1000.0" lower = "-3.14" upper = "3.14" velocity = "0.5"/>
+				<origin rpy = "0 0 0" xyz = "0 0 1.2"/>
+				<parent link = "link_02"/>
+				<child link = "link_03"/>
+	</joint>
+
+	<link name="link_03">
+		<visual>
+			<origin rpy="0 0 0" xyz="0 0 0.3"/>
+				<geometry>
+					<cylinder radius="0.15" length="0.6"/>
+				</geometry>
+		</visual>
+	</link>
+	
+	
+</robot>

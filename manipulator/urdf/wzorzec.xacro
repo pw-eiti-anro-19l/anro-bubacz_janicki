@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find manipulator)/urdf/constants.xacro" />
+
+	<xacro:macro name="my_link_box" params="name origin_xyz origin_rpy size">
+		<link name="${name}">
+			<visual>
+				<origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
+				<geometry>
+					<box size="${size}"/>
+				</geometry>
+			</visual>
+		</link>
+	</xacro:macro>
+
+	 <xacro:macro name="my_link_cylinder" params="name origin_xyz origin_rpy radius length">
+    <link name="${name}">
+    <visual>
+        <origin rpy="${origin_rpy}" xyz="${origin_xyz}" />
+        <geometry>
+          <cylinder radius="${radius}" length="${length}" />
+        </geometry>
+      </visual>
+    </link>
+  </xacro:macro>
+
+	<xacro:macro name="my_joint" params="name type origin_rpy origin_xyz parent child">
+		<joint name="${name}" type="${type}">
+			<axis xyz="0 0 1"/>
+			<limit effort="${limit_effort}" lower="${limit_lower}" upper="${limit_upper}" velocity="${limit_velocity}"/>
+			<origin xyz = "${origin_xyz}" rpy="${origin_rpy}"/>
+			<parent link = "${parent}"/>
+			<child link = "${child}"/>
+		</joint>
+	</xacro:macro>
+</robot>

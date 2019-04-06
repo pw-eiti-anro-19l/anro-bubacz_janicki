@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find manipulator)/urdf/dh.xacro" />
+
+	<xacro:property name="limit_effort"		value="1000.0"	/>
+	<xacro:property name="limit_lower"		value="${-pi}"	/>
+	<xacro:property name="limit_upper"		value="${pi}"	/>
+	<xacro:property name="limit_velocity"	value="0.5"		/>
+	<xacro:property name="base_size"		value="1.5 1.5"	/>
+	<xacro:property name="base_height"		value="0.1"		/>
+	<xacro:property name="base_height_half"	value="${base_height/2.0}" />
+
+
+	<xacro:property name="base"			value="base_link" 	/>
+	<xacro:property name="l01"			value="link_01"		/>
+	<xacro:property name="l02"			value="link_02"		/>
+	<xacro:property name="l03"			value="link_03"		/>
+
+	<!--<xacro:property name="L01"			value="1.5"			/>
+	<xacro:property name="L02"			value="1.0"			/>
+	<xacro:property name="L03"			value="0.5"			/>-->
+
+	<xacro:property name="L01"			value="${a0+d1}"	/>
+	<xacro:property name="L02"			value="${a1+d2}"	/>
+	<xacro:property name="L03"			value="${a2+d3}"	/>
+	<xacro:property name="L04"			value="${a3+d4}"	/>
+
+	<xacro:property name="R01"			value="0.15"			/>
+	<xacro:property name="R02"			value="0.12"			/>
+	<xacro:property name="R03"			value="0.1"		/>
+	<xacro:property name="R04"			value="0.05"		/> <!--to niepotrzebne-->
+
+	<xacro:property name="xyz_01"		value="${a0} 0 ${d1}"	/>
+	<xacro:property name="xyz_02"		value="${a1} 0 ${d2}"		/>
+	<xacro:property name="xyz_03"		value="${a2} 0 ${d3}"		/>
+	<xacro:property name="xyz_04"		value="${a3} 0 ${d4}"		/>
+	<xacro:property name="xyz_05"		value="${a4} 0 ${d5}"		/>
+	<xacro:property name="xyz_06"		value="${a5} 0 ${d6}"		/>
+
+	<xacro:property name="rpy_01"		value="${alpha0} ${-phi2} 0"		/>
+	<xacro:property name="rpy_02"		value="${alpha1} ${-phi3} 0"		/>
+	<xacro:property name="rpy_03"		value="${alpha2} ${-phi4} 0"		/>
+	<xacro:property name="rpy_04"		value="${alpha3} ${-phi5} 0"		/>
+	<xacro:property name="rpy_05"		value="${alpha4} 0 0"		/>
+	<xacro:property name="rpy_06"		value="${alpha5} 0 0"		/>
+
+</robot>

@@ -4,33 +4,42 @@ from geometry_msgs.msg import Twist
 from os import system
 
 
+import sys, select, termios, tty
+
+
 def display(keys):
 	print 'Press button and accept with enter:'
 	print keys['fwd'],' to move forward'
 	print keys['bwd'],' to move backward'
 	print keys['rht'],' to move right'
 	print keys['lft'],' to move left'
-	print 'Press <q> to quit'
+	print 'Press CTRL + C to quit'
+
+#def getKey():
+#	tty.setraw(sys.stdin.fileno())
+#	select.select([sys.stdin], [], [], 0)
+#	key = sys.stdin.read(1)
+#	termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
+#	return key
 
 
-def get_move(keys):
-	key = ''
-	while key == '':
-		key = raw_input('')
-		move = Twist()
-		if key == keys["fwd"]:
-			move.linear.x = 1.0
-		elif key == keys["bwd"]:
-			move.linear.x = -1.0
-		elif key == keys["rht"]:
-			move.angular.z = -0.5
-		elif key == keys["lft"]:
-			move.angular.z = 0.5
-		elif key == 'q':
-			move = 'quit'
-		else:
-			return None
-		return move
+
+def getMove(keys):
+	key = raw_input()
+	move = Twist()
+	if key == keys["fwd"]:
+		move.linear.x = 1.0
+	elif key == keys["bwd"]:
+		move.linear.x = -1.0
+	elif key == keys["rht"]:
+		move.angular.z = -0.5
+	elif key == keys["lft"]:
+		move.angular.z = 0.5
+	elif key == 'q':
+		move = 'quit'
+	else:
+		return None
+	return move
 
 
 
@@ -50,7 +59,7 @@ def step():
 		}
 		system('clear')
 		display(keys)
-		move = get_move(keys)
+		move = getMove(keys)
 		if move == 'quit':
 			return True
 			break

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<robot name="my_manipulator" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find manipulator)/urdf/templates.xacro" />
+    <xacro:include filename="$(find manipulator)/urdf/base_and_limits.xacro" />
+    <xacro:include filename="$(find manipulator)/urdf/dh_parameters.xacro"  />
+
+    <my_link_box name="${l00}" origin_rpy="0 0 0" origin_xyz="0 0 ${base_height_half}" size="${base_size} ${base_height}" />
+	<my_link_cylinder name="${l01}" origin_xyz="${a1/2} 0 ${d2/2}" origin_rpy="0 ${phi2} 0" radius="${R01}" length="${L2}"/>
+	<my_link_cylinder name="${l02}" origin_xyz="${a2/2} 0 ${d3/2}" origin_rpy="0 ${phi3} 0" radius="${R02}" length="${L3}"/>
+	<my_link_cylinder name="${l03}" origin_xyz="${a3/2} 0 ${d4/2}" origin_rpy="0 ${phi4} 0" radius="${R03}" length="${L4}"/>
+
+
+
+<my_joint name="${l00}__${l01}" type="revolute"
+origin_rpy="${alpha0} 0 0" origin_xyz="${a0} 0 ${d1}"
+parent = "${l00}" child = "${l01}"/>
+
+<my_joint name="${l01}__${l02}" type="revolute"
+origin_rpy="${alpha1} 0 0" origin_xyz="${a1} 0 ${d2}"
+parent = "${l01}" child = "${l02}"/>
+
+<my_joint name="${l02}__${l03}" type="revolute"
+origin_rpy="${alpha2} 0 0" origin_xyz="${a2} 0 ${d3}"
+parent = "${l02}" child = "${l03}"/>
+
+</robot>
