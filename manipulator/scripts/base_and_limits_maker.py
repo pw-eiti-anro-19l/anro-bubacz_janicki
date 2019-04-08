@@ -17,6 +17,12 @@ prefix = """<?xml version="1.0"?>
     <xacro:property name="base_height"      value="0.1"     />
     <xacro:property name="base_height_half" value="${base_height/2.0}" />  
 
+    <xacro:property name="gripper_size"        value="0.4 0.4" />
+    <xacro:property name="gripper_height"      value="0.4"     />
+    <xacro:property name="gripper_height_half" value="${gripper_height/2.0}" /> 
+    <xacro:property name="gripper_limit_lower"      value="-0.4"  />
+    <xacro:property name="gripper_limit_upper"      value="0.4"   />
+
     <xacro:property name="l00"          value="base_link"           />\n"""
 
 postfix = """</robot>"""
@@ -40,10 +46,10 @@ def create_main_xacro():
     dh_out.write(prefix)
 
     dh_lines = dh_in.readlines()
-    i=0
+    i=1
     for line in dh_lines:
-        if i!=0:
-            dh_out.write("""\t<xacro:property name="l0""" + str(i) + """"          value="link_0""" + str(i) + """"             />\n""")
+        #if i!=0:
+        dh_out.write("""\t<xacro:property name="l0""" + str(i) + """"          value="link_0""" + str(i) + """"             />\n""")
         i=i+1
 
     dh_out.write("\n\n")
@@ -53,7 +59,7 @@ def create_main_xacro():
         if i!=0:
             dh_out.write("""\t<xacro:property name="R0""" + str(i) + """"          value=\"""" + str(countRadius(i)) + """"             />\n""")
         i=i+1
-        
+    dh_out.write("""\t<xacro:property name="R0""" + str(i) + """"          value=\"""" + str(countRadius(i)) + """"             />\n""")    
 
     dh_out.write(postfix)
     dh_out.close()

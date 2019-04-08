@@ -36,4 +36,14 @@
 			<child link = "${child}"/>
 		</joint>
 	</xacro:macro>
+
+	<xacro:macro name="gripper_joint" params="name type origin_rpy origin_xyz parent child">
+		<joint name="${name}" type="${type}">
+			<axis xyz="0 0 1"/>
+			<limit effort="${limit_effort}" lower="${gripper_limit_lower}" upper="${gripper_limit_upper}" velocity="${limit_velocity}"/>
+			<origin xyz = "${origin_xyz}" rpy="${origin_rpy}"/>
+			<parent link = "${parent}"/>
+			<child link = "${child}"/>
+		</joint>
+	</xacro:macro>
 </robot>

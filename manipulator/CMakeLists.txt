@@ -162,6 +162,8 @@ include_directories(
    scripts/dh_parameters_maker.py
    scripts/base_and_limits_maker.py
    scripts/manipulator_main.py
+   scripts/DH_check.py
+   scripts/kin.py
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
  )
 

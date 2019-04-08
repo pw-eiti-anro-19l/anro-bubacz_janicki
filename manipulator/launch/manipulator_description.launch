@@ -1,6 +1,8 @@
 <launch>
 
-	<node name = "dh_params_maker" pkg="manipulator" type="dh_parameters_maker.py"/>
+	<param name = "manipulator_params" type = "yaml" value = "j1:1" />
+
+	<node name = "dh_params_maker" pkg="manipulator" type="DH_check.py"/>
 
 	<node name = "main_xacro_maker" pkg="manipulator" type="manipulator_main.py"/>
 
