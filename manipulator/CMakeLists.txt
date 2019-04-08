@@ -8,10 +8,8 @@ project(manipulator)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
-  rospy
-  std_msgs
   urdf
+  rospy
 )
 
 ## System dependencies are found with CMake's conventions
@@ -106,7 +104,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES manipulator
-#  CATKIN_DEPENDS roscpp rospy std_msg urdf
+#  CATKIN_DEPENDS urdf
 #  DEPENDS system_lib
 )
 
@@ -160,10 +158,12 @@ include_directories(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# install(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+ install(PROGRAMS
+   scripts/dh_parameters_maker.py
+   scripts/base_and_limits_maker.py
+   scripts/manipulator_main.py
+   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+ )
 
 ## Mark executables and/or libraries for installation
 # install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_node
