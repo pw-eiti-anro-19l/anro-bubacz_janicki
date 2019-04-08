@@ -1,0 +1,9 @@
+<launch>
+
+	<node name = "dh_params_maker" pkg="manipulator" type="dh_parameters_maker.py"/>
+
+	<node name = "main_xacro_maker" pkg="manipulator" type="manipulator_main.py"/>
+
+	<node name = "base_and_limits" pkg="manipulator" type="base_and_limits_maker.py" />
+
+</launch>

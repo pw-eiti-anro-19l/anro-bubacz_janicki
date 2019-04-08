@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot name="my_manipulator" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find manipulator)/urdf/wzorzec.xacro" />
+    <xacro:include filename="$(find manipulator)/urdf/constants.xacro" />
+d is equal to d
+d is equal to 0
+d is equal to 0
+d is equal to 0
+</robot>
