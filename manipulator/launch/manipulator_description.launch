@@ -3,7 +3,7 @@
 	<param name = "manipulator_params" value = ""/>
 <rosparam >
 tool_vec:
- x: 0
+ x: 0.2
  y: 0
  z: 0
 </rosparam>

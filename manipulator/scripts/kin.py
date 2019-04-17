@@ -17,15 +17,19 @@ def T_DH(DHparam):
 	a  = float(DHparam['a'])
 	d  = float(DHparam['d'])
 	al = float(DHparam['alpha'])
-	T = numpy.array([[cos(th), -sin(th)*cos(al), sin(th)*sin(al), a*cos(th)],
-		[sin(th), cos(th)*cos(al), -cos(th)*sin(al), a*sin(th)],
-		[0, sin(al), cos(al), d],
-		[0, 0, 0, 1]])
+	#T = numpy.array([[cos(th), -sin(th)*cos(al), sin(th)*sin(al), a*cos(th)],
+	#	[sin(th), cos(th)*cos(al), -cos(th)*sin(al), a*sin(th)],
+	#	[0, sin(al), cos(al), d],
+	#	[0, 0, 0, 1]])
+	T = numpy.array([ [cos(th), -sin(th), 0, a],
+		[sin(th)*cos(al), cos(th)*cos(al), -sin(al), -d*sin(al)],
+		[sin(th)*sin(al), cos(th)*sin(al), cos(al), d*cos(al)],
+		[0,0,0,1]])
 	return T
 
 
 def callback(data):
-    #rospy.loginfo(data.position)
+    #rospy.loginfo(data)
     marker = Marker()
     marker.header.frame_id = "base_link"
     marker.header.stamp = rospy.Time()
@@ -33,7 +37,7 @@ def callback(data):
     marker.id = 0
     marker.type = marker.SPHERE
     marker.action = marker.ADD
-    marker.pose.orientation.w = 1.0
+    marker.pose.orientation.w = 0.0
     marker.scale.x = 0.3
     marker.scale.y = 0.3
     marker.scale.z = 0.3
@@ -50,7 +54,7 @@ def callback(data):
     	params[joint['move']] += data.position[joint['joint_number'] - 1]
     	T = T_DH(params)
     	v = T.dot(v)
-    	#rospy.loginfo(v)
+    	#rospy.loginfo(joint)
     marker.pose.position.x = v[0]
     marker.pose.position.y = v[1]
     marker.pose.position.z = v[2]
@@ -60,9 +64,8 @@ def callback(data):
 
 
 
-def listener():
+def marker():
     rospy.init_node('kin', anonymous = True)
-
 
     rospy.Subscriber("joint_states", JointState, callback)
 
@@ -73,7 +76,7 @@ def listener():
 
 if __name__ == '__main__':
     try:
-        listener()
+        marker()
     except rospy.ROSInterruptException:
         pass
 
