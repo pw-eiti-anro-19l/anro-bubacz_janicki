@@ -134,5 +134,6 @@ if __name__ == '__main__':
     try:
         if not robot == False:
             create_df_xacro(robot)
+            rospy.set_param('manipulator_params', robot)
     except rospy.ROSInterruptException:
         pass
