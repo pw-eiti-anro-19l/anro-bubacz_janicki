@@ -13,11 +13,8 @@
 
 	<node name = "kin" pkg="manipulator" type="kin.py" output="screen"/>
 
+	<node name = "jint" pkg = "manipulator" type = "jint.py"/>
 
-	<!-- Send joint values -->
-	<node name = "joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-		<param name = "use_gui" value="True"/>
-	</node>
-
+	<node name = "jcmd" pkg = "manipulator" type = "jcmd.py"/>
 
 </launch>
