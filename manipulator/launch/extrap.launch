@@ -3,17 +3,17 @@
 	
 
 
-	<param name = "robot_description" command = "$(find xacro)/xacro '$(find manipulator)/urdf/manipulator_main.xacro'"/>
+	<!--param name = "robot_description" command = "$(find xacro)/xacro '$(find manipulator)/urdf/manipulator_main.xacro'"/-->
 	
 	
-	<node name = "rviz" pkg ="rviz" type="rviz" args = "-d $(find manipulator)/launch/config.rviz"/>
+	<!--node name = "rviz" pkg ="rviz" type="rviz" args = "-d $(find manipulator)/launch/config.rviz"/-->
 
 
 	<node name = "robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
 
 	<node name = "kin" pkg="manipulator" type="kin.py" output="screen"/>
 
-	<node name = "jint" pkg = "manipulator" type = "jint.py"/>
+	<node name = "jint" pkg = "manipulator" type = "jint.py" output="screen"/>
 
 	<node name = "jcmd" pkg = "manipulator" type = "jcmd.py"/>
 

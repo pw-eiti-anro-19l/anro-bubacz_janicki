@@ -3,5 +3,4 @@ float64[] time
 int8 mode
 ---
 bool executable
-float64 progress
 string err_msg
